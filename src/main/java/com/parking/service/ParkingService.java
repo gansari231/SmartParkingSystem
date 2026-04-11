@@ -1,6 +1,7 @@
 package com.parking.service;
 
 import com.parking.dto.EntryRequestDTO;
+import com.parking.dto.ParkingStatsDTO;
 import com.parking.dto.TicketResponseDTO;
 import com.parking.entity.*;
 import com.parking.enums.SpotType;
@@ -123,6 +124,7 @@ public class ParkingService {
         return ticketRepository.save(ticket);
     }*/
 
+    @Transactional
     public TicketResponseDTO exitVehicle(Long ticketId) {
 
         Ticket ticket = ticketRepository.findById(ticketId)
@@ -157,6 +159,19 @@ public class ParkingService {
                 .exitTime(ticket.getExitTime())
                 .fee(ticket.getFee())
                 .status(ticket.getStatus())
+                .build();
+    }
+
+    public ParkingStatsDTO getParkingStats() {
+
+        long total = spotRepository.count();
+        long available = spotRepository.countByisAvailableTrue();
+        long occupied = spotRepository.countByisAvailableFalse();
+
+        return ParkingStatsDTO.builder()
+                .totalSpots(total)
+                .availableSpots(available)
+                .occupiedSpots(occupied)
                 .build();
     }
 }

@@ -1,6 +1,7 @@
 package com.parking.controller;
 
 import com.parking.dto.EntryRequestDTO;
+import com.parking.dto.ParkingStatsDTO;
 import com.parking.dto.TicketResponseDTO;
 import com.parking.entity.ParkingSpot;
 import com.parking.entity.Ticket;
@@ -33,4 +34,7 @@ public class ParkingController {
 
     @PostMapping("/exit/{ticketId}")
     public TicketResponseDTO exitVehicle(@PathVariable Long ticketId) { return parkingService.exitVehicle(ticketId); }
+
+    @GetMapping("/stats")
+    public ParkingStatsDTO getStats() { return parkingService.getParkingStats(); }
 }

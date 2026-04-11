@@ -30,9 +30,14 @@ public class DataInitializer implements CommandLineRunner {
             s3.setSpotNumber("B1");
             s3.setSpotType(SpotType.BIKE);
 
+            ParkingSpot s4 = new ParkingSpot();
+            s4.setSpotNumber("A3");
+            s4.setSpotType(SpotType.CAR);
+
             spotRepository.save(s1);
             spotRepository.save(s2);
             spotRepository.save(s3);
+            spotRepository.save(s4);
         }
     }
 }
