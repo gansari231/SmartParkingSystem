@@ -1,5 +1,7 @@
 package com.parking.controller;
 
+import com.parking.dto.EntryRequestDTO;
+import com.parking.dto.TicketResponseDTO;
 import com.parking.entity.ParkingSpot;
 import com.parking.entity.Ticket;
 import com.parking.entity.Vehicle;
@@ -27,7 +29,8 @@ public class ParkingController {
     }
 
     @PostMapping("/entry")
-    public Ticket parkVehicle(@RequestBody Vehicle vehicle) {
-        return parkingService.parkVehicle(vehicle);
-    }
+    public TicketResponseDTO parkVehicle(@RequestBody EntryRequestDTO request) { return parkingService.parkVehicle(request); }
+
+    @PostMapping("/exit/{ticketId}")
+    public TicketResponseDTO exitVehicle(@PathVariable Long ticketId) { return parkingService.exitVehicle(ticketId); }
 }

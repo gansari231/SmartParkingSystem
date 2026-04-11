@@ -18,4 +18,7 @@ public class ParkingSpot {
     private SpotType spotType;
 
     private boolean isAvailable = true;
+
+    @Version
+    private Integer version;
 }

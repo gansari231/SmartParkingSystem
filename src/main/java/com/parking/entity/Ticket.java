@@ -22,6 +22,10 @@ public class Ticket {
 
     private LocalDateTime entryTime;
 
+    private LocalDateTime exitTime;
+
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
+
+    private double fee;
 }
